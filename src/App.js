@@ -1,6 +1,8 @@
 import React,{ Component } from "react";
 import "./App.css";
 import axios from 'axios';
+
+import Alert from './components/layouts/Alert';
 import Navbar from './components/layouts/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
@@ -8,7 +10,8 @@ import Search from './components/users/Search';
 class App extends Component {
   state={
     users:[],
-    loading:false
+    loading:false,
+    alert:null
   }
   
   // async componentDidMount(){
@@ -27,7 +30,12 @@ class App extends Component {
     this.setState({users: res.data.items, loading:false});
   }
 
-  clearData = () =>{ this.setState({ users:[], loading:false})}
+  clearData = () =>{ this.setState({ users:[], loading:false})};
+
+  setAlert = (msg,type) =>{
+    this.setState({alert:{msg,type}});
+    setTimeout(()=>this.setState({alert:null}),3000)
+  }
 
   render()
   {
@@ -35,7 +43,12 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <h2>Hello React</h2>
-        <Search clearData={this.clearData} searchName={this.searchName} showClear={this.state.users.length > 0 ? true : false} />
+        <Alert alert={this.state.alert}/>
+        <Search clearData={this.clearData} 
+          searchName={this.searchName} 
+          showClear={this.state.users.length > 0 ? true : false}
+          setAlert={this.setAlert}
+           />
         <Users loading={this.state.loading} users={this.state.users} />
       </div>
     );
