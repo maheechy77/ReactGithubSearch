@@ -8,7 +8,37 @@ body{
     font-weight: 400;
     color: white;
 }
-
+ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+}
+.badge{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 5px;
+    font: 100;
+    color: white;
+}
+.badge-follower{
+    padding: 5px;
+    color: black;
+    background-color: lightpink;
+}
+.badge-following{
+    padding: 5px;
+    color: black;
+    background-color: lightgreen;
+}
+.badge-repos{
+    padding: 5px;
+    background-color: lightcoral;
+}
+.badge-gist{
+    padding: 5px;
+    background-color: darkslategray;
+}
 .card {
     /* Add shadows to create the "card" effect */
     text-align: center;
@@ -24,6 +54,23 @@ body{
   .card-body{
       margin: 5px;
       padding: 5px;
+  }
+  .card-user {
+    /* Add shadows to create the "card" effect */
+    text-align: center;
+    height: auto;
+    width: auto;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  .usercard{
+      text-align: center;
+      padding: 15px;
+  }
+  .grid-2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
   }
   .avater{
       border-radius: 60px;
@@ -51,7 +98,7 @@ input[type=text]{
 .btn{
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 5px 50px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
@@ -63,9 +110,23 @@ cursor: pointer;
     background-color: #008CBA;
     border-radius: 4px;
 }
+.btn-light{
+    color: black;
+    background-color: lightseagreen;
+    border-radius: 8px;
+}
+.btn-dark{
+    color: white;
+    background-color: black;
+    border-radius: 8px;
+}
 .btn-warning{
     background-color: orangered;
     border-radius: 4px;
+}
+.navbar{
+    display: grid;
+    grid-template-columns: auto auto;
 }
 .alert{
     width: 100%;
@@ -77,4 +138,11 @@ cursor: pointer;
 }
 .alert-lightred{
     background-color: lightcoral;
+}
+.text-success{
+    color: lime;
+}
+
+.text-danger{
+    color: red;
 }

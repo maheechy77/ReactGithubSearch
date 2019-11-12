@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
     static propTypes = {
@@ -18,6 +19,10 @@ export default class Navbar extends Component {
                 <h1>
                     <i className={icon} /> {title}
                 </h1>
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/about'>About</Link></li>
+                </ul>
             </nav>
         )
     }
