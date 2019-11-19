@@ -1,43 +1,40 @@
-import React, { Component } from 'react';
+import React,{useState,useContext} from 'react';
 import PropTypes from 'prop-types';
 
-class Search extends Component {
-    state={
-        search:''
-    }
-    static propTypes={
-        clearData:PropTypes.func.isRequired,
-        showClear:PropTypes.bool.isRequired,
-        searchName:PropTypes.func.isRequired,
-        setAlert:PropTypes.func.isRequired
-    }
-    onSubmit=(e)=>{
+import GithubContext from '../../context/github/githubContext';
+
+const Search= ({setAlert}) => {
+    const githubContext= useContext(GithubContext);
+    const [text,setText]=useState('');
+    const onSubmit=(e)=>{
         e.preventDefault();
-        if(this.state.search === ''){
-            this.props.setAlert('Please Enter Something','lightred')
+        if(text === ''){
+            setAlert('Please Enter Something','lightred')
         }else
         {
-            this.props.searchName(this.state.search);
-            this.setState({search:''})
+            githubContext.searchName(text);
+            setText('');
         }
     }
-    onChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value});
+    const onChange=(e)=>{
+        setText(e.target.value);
     }
-    render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit} className='form' >
+                <form onSubmit={onSubmit} className='form' >
                     <input type="text" 
                         name="search" 
-                        value={this.state.search} 
-                        onChange={this.onChange}
+                        value={text} 
+                        onChange={onChange}
                         placeholder="Search Name..." />
                     <input type="submit" value="Search" className="btn btn-info" />
-                    {this.props.showClear && (<button className="btn btn-warning" onClick={this.props.clearData} >Clear</button>)}
+                    {githubContext.users.length>0 && (<button className="btn btn-warning" onClick={githubContext.clearData} >Clear</button>)}
                 </form>
             </div>
-        )
-    }
+        )   
 };
+
+Search.propTypes={
+    setAlert:PropTypes.func.isRequired
+}
 export default Search;
